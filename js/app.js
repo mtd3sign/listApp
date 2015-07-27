@@ -49,9 +49,10 @@ var taskComplete = function() {
 
 // mark task incomplete
 var taskIncomplete = function() {
-    console.log("Task incomplete...")
+    console.log("Task incomplete...");
   // when checkbox is unchecked
     // append <li> to #incompleted-tasks
 }
 
 // Set click handler to the addTask function
+addButton.onclick = addTask;
