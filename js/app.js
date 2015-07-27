@@ -1,5 +1,5 @@
 // Problem: User interaction doesn't provide result
-// Soluition: Add interactivity
+// Solution: Add interactivity
 
 var taskInput = document.getElementById("new-task"); //new task
 var addButton = document.getElementsByTagName("button")[0]; //first button
@@ -8,7 +8,7 @@ var completedTasksHolder = document.getElementById("completed-tasks"); // comple
 
 // add a new task
 var addTask = function() {
-    console.log("Add task...")
+    console.log("Add task...");
   // when button is pressed
   // create a list item with text from #new-task
     // input (checkbox)
@@ -21,7 +21,7 @@ var addTask = function() {
 
 // edit existing task
 var editTask = function() {
-    console.log("Edit task...")
+    console.log("Edit task...");
   // when edit button is pressed
   //  if class of parent is .editMode
     //switch from .editMode
@@ -35,14 +35,14 @@ var editTask = function() {
 
 // delete existing task
 var deleteTask = function() {
-    console.log("Delete task...")
+    console.log("Delete task...");
   // when delete button is pressed
     // remove parent <li> from <ul>
 }
 
 // mark task complete
 var taskComplete = function() {
-    console.log("Task complete...")
+    console.log("Task complete...");
   // when checkbox is checked
     // append <li> to #completed-tasks
 }
@@ -54,5 +54,35 @@ var taskIncomplete = function() {
     // append <li> to #incompleted-tasks
 }
 
+var bindTaskEvents = function(taskListItem, checkBoxEventHandler) {
+  console.log("Bind <li> events");
+  //select taskListItem's children
+  var checkBox = taskListItem.querySelector("input[type=checkbox]");
+  var editButton = taskListItem.querySelector("button.edit");
+  var deleteButton = taskListItem.querySelector("button.delete");
+
+  //bind editTask to edit button
+  editButton.onclick = editTask;
+
+  //bind deleteTask to delete button
+  deleteButton.onclick = deleteTask;
+
+  //bind checkBoxEventHandler to checkbox
+  checkBox.onchange = checkBoxEventHandler;
+}
+
+
 // Set click handler to the addTask function
 addButton.onclick = addTask;
+
+// cycle over the incompleteTasksHolder <ul> items
+for (var i = 0; i < incompleteTasksHolder.children.length; i++) {
+        // bind events to <li> (taskComplete)
+        bindTaskEvents(incompleteTasksHolder.children[i], taskComplete);
+}
+
+//cycle over completedTasksHolder ul list items
+for(var i = 0; i < completedTasksHolder.children.length; i++) {
+  //bind events to list item's children (taskIncomplete)
+  bindTaskEvents(completedTasksHolder.children[i], taskIncomplete);
+}
