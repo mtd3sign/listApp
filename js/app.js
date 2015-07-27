@@ -53,3 +53,5 @@ var taskIncomplete = function() {
   // when checkbox is unchecked
     // append <li> to #incompleted-tasks
 }
+
+// Set click handler to the addTask function
